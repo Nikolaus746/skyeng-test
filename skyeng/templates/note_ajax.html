@@ -1,0 +1,83 @@
+{% for note in notes %}
+    <tr>
+        <td><a href="{% url "note" note.uuid %}">{{ note.title }}</a></td>
+        <td><a href="{% url "note-update" note.pk %}">{{ note.text|truncatechars_html:29 }}...</a></td>
+        <td>{{ note.date }}</td>
+        <td>{{ note.category }}</td>
+        <td class="heart" data="{{ note.uuid }}" is="{{ note.is_favorites }}" style="cursor: pointer">
+            {% if note.is_favorites %}<i class="fas fa-heart"></i>{% else %}<i class="far fa-heart"></i>{% endif %}</td>
+        <td class="published" data="{{ note.uuid }}" is="{{ note.is_published }}" style="cursor: pointer">
+            {% if note.is_published %}<i class="fas fa-toggle-on"></i></i>{% else %}
+                <i class="fas fa-toggle-off"></i>{% endif %}</td>
+        <td class="trash" data="{{ note.uuid }}" style="cursor: pointer"><i class="fas fa-trash"></i></td>
+    </tr>
+{% endfor %}
+
+<script>
+    function get_notes() {
+        $.ajax({
+            method: 'get',
+            url: "{% url 'ajax' %}",
+            success: function (data) {
+                $("#ajx-container").html(data)
+            }
+        });
+    }
+
+    function delete_note(uuid) {
+
+        $.ajax({
+            method: 'delete',
+            url: "/delete-note/" + uuid + "/",
+            success: function (data) {
+                get_notes();
+            }
+        });
+    }
+
+
+    function update_fav(uuid, flag) {
+        let heart = flag === "False";
+        $.ajax({
+            method: 'patch',
+            url: "/update-note/" + uuid + "/",
+            data: {is_favorites: heart},
+            success: function (data) {
+                get_notes();
+            }
+        });
+    }
+
+    function update_pub(uuid, flag) {
+        let pub = flag === "False";
+        $.ajax({
+            method: 'patch',
+            url: "/update-note/" + uuid + "/",
+            data: {is_published: pub},
+            success: function (data) {
+                get_notes();
+            }
+        });
+    }
+
+
+    $(function () {
+        $(".trash").click(function (e) {
+            if (confirm("Вы уверены??")) {
+                delete_note(e.target.parentNode.getAttribute("data"))
+            }
+        });
+        $(".heart").click(function (e) {
+
+            update_fav(e.target.parentNode.getAttribute("data"), e.target.parentNode.getAttribute("is"))
+        });
+
+        $(".published").click(function (e) {
+
+            update_pub(e.target.parentNode.getAttribute("data"), e.target.parentNode.getAttribute("is"))
+        });
+
+    })
+
+
+</script>

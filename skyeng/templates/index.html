@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load sorting_tags %}
+{% block content %}
+
+<div class="grid-container">
+  <div class="grid-x grid-margin-x">
+    <div class="cell">
+        <div class="top-bar">
+
+            <div class="top-bar-left">
+    <ul class="menu">
+      <li class="menu-text" ><a style="color: white; font-size: 1.5em; cursor: pointer" href="{% url "note-create" %}"><i class="fas fa-plus"></i></a> </li>
+        <li class="menu-text" ><a style="color: white; font-size: 1.5em; cursor: pointer" data-open="filter-modal"><i class="fas fa-filter"></i></a></li>
+        <li class="menu-text" ><a style="color: white; font-size: 1.5em; cursor: pointer" href="/"><i class="fas fa-broom"></i></a></li>
+    </ul>
+  </div>
+
+  <div class="top-bar-right">
+    <ul class="menu">
+      <li><a type="button" class="button" href="/accounts/logout/">Выход</a></li>
+    </ul>
+  </div>
+</div>
+    </div>
+  </div>
+
+<div class="grid-x grid-margin-x">
+    <div class="cell">
+        <table>
+  <thead>
+    <tr>
+      <th width="200" class="sorting">{% anchor title "Заголовок" %}</th>
+      <th>Текст</th>
+      <th width="150" class="sorting">{% anchor date "Дата создания" %}</th>
+      <th width="150" class="sorting">{% anchor category "Категория" %}</th>
+        <th width="150" class="sorting">{% anchor is_favorites "Избранное" %}</th>
+        <th width="100"></th>
+        <th width="100"></th>
+    </tr>
+  </thead>
+  <tbody id="ajx-container">
+  {% include "note_ajax.html" %}
+  </tbody>
+</table>
+    </div>
+</div>
+
+<div class="reveal" id="filter-modal" data-reveal>
+  <h3>Фильтрация</h3>
+  <form method="get" style="" id="filter-form">
+                    {{ filter.form.as_p }}
+                    <input class="button" type="submit"/>
+                </form>
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+
+</div>
+
+
+{% endblock %}

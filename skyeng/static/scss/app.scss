@@ -1,0 +1,327 @@
+@import "../bower_components/foundation-sites/scss/foundation";
+@import "../bower_components/motion-ui/src/motion-ui";
+@import "settings";
+
+@include motion-ui-transitions;
+@include motion-ui-animations;
+@include foundation-xy-grid-classes;
+@include foundation-global-styles;
+@include foundation-typography;
+@include foundation-forms;
+@include foundation-button;
+@include foundation-accordion;
+@include foundation-accordion-menu;
+@include foundation-badge;
+@include foundation-breadcrumbs;
+@include foundation-button-group;
+@include foundation-callout;
+@include foundation-card;
+@include foundation-close-button;
+@include foundation-menu;
+@include foundation-menu-icon;
+@include foundation-drilldown-menu;
+@include foundation-dropdown;
+@include foundation-dropdown-menu;
+@include foundation-responsive-embed;
+@include foundation-label;
+@include foundation-media-object;
+@include foundation-off-canvas;
+@include foundation-orbit;
+@include foundation-pagination;
+@include foundation-progress-bar;
+@include foundation-slider;
+@include foundation-sticky;
+@include foundation-reveal;
+@include foundation-switch;
+@include foundation-table;
+@include foundation-tabs;
+@include foundation-thumbnail;
+@include foundation-title-bar;
+@include foundation-tooltip;
+@include foundation-top-bar;
+@include foundation-visibility-classes;
+@include foundation-float-classes;
+@include foundation-flex-classes;
+@include foundation-text-alignment;
+@include foundation-prototype-classes;
+
+/* Стили для wagtail */
+.richtext-image.left {
+  float: left;
+  margin: 10px;
+}
+
+.richtext-image.right {
+  float: right;
+  margin: 10px;
+}
+
+.richtext-image.full-width {
+  margin: 10px;
+  width: 100%;
+}
+
+.ytp-cued-thumbnail-overlay {
+  margin: 10px;
+  width: 100%;
+}
+
+.menu-wrapper {
+  background-color: $black;
+  border-bottom: solid 1px grey;
+}
+
+.header-top-bar {
+  background-color: $black;
+}
+
+body {
+  background: url('../images/bg-pattern.jpg');
+}
+
+.statistic-p {
+  font-size: large;
+  font-weight: bolder;
+}
+
+//.pay-tb-tr{
+//  cursor: pointer
+//}
+.pay-tb-tr:hover {
+  color: grey;
+}
+.pay-tr {
+  cursor: pointer;
+}
+
+.pay-tb-tr {
+  transition-duration: .5s;
+}
+
+.pay-tb-tr-red {
+  background: #DA2801;
+  color: whitesmoke;
+  cursor: pointer;
+  transition-duration: .5s;
+}
+
+.pay-tb-tr-red:hover {
+  background: #da1e3d;
+  color: #DA2801;
+}
+
+table a{
+  color: black;
+  text-decoration: underline;
+}
+
+h3 a {
+  color: black;
+  text-decoration: underline;
+}
+h4 a {
+  color: black;
+  text-decoration: underline;
+}
+
+.student{
+  cursor: pointer;
+}
+.student:hover{
+  color: dimgrey;
+}
+
+#link-to-stripe{
+
+}
+
+#link-to-stripe:hover{
+
+  text-decoration: underline;
+}
+
+.card-block{
+  border: 1px solid lightslategrey;
+  box-shadow: 3px 0px 3px 0px rgba(34, 60, 80, 0.2);
+}
+// Всплывающее окно
+/*---------Оформление. Общие стили---------*/
+.support,
+.support-two {
+	display: inline-block;
+	position: relative;
+	text-decoration: none;
+	cursor: pointer;
+}
+.support em,
+.support-two em {
+	background: #FF6600;
+	border-radius: 20px;
+	border: 1px solid #999;
+	text-align: center;
+	color: #FFF;
+ 	font: normal bold 16px Arial;
+ 	padding: 0 4px;
+}
+.tip,
+.tip-two,
+.tip-three,
+span.support::before,
+span.support-hover::before {
+  	display: none;
+  	position: absolute;
+  	z-index: 9998;
+  	top: -0px;
+  	left: -100px;
+  	background: #EDEDED;
+  	border-radius: 3px;
+  	border: 1px solid #ccc;
+  	box-shadow: 5px 5px 0.5em -0.1em rgba(0,0,6,0.5);
+  	text-align: left;
+  	color: #000;
+  	font: normal 500 14px Arial, sans-serif;
+  	opacity: .9;
+  	cursor: default;
+  	padding: 5px;
+  	margin: -15px 0 0 10px;
+  	width: 250px;
+  	min-height: 50px;
+ 	height: auto;
+}
+.tip-two,
+.tip-three {
+  	margin: -30px 0 0 0;
+}
+.tip:before,
+.tip-two:before,
+.tip-three:before {
+ 	border-width: 0px 0px 0px 0px;
+ 	border-color: transparent #cccccc transparent transparent;
+ 	top: 180px;
+ 	left: 150px;
+}
+.tip:after,
+.tip-two:after,
+.tip-three:after {
+ 	border-width: 0px 0px 0px 0px;
+ 	border-color: transparent #ededed transparent transparent;
+ 	top: 182px;
+ 	left: 152px;
+}
+.tip:before,
+.tip-two:before,
+.tip-three:before,
+.tip:after,
+.tip-two:after,
+.tip-three:after {
+ 	content:"";
+ 	position:absolute;
+ 	width: 0px;
+ 	height: 0px;
+ 	border-style: solid;
+}
+a.support:focus em,
+a.support-two:focus em,
+#tip-checkbox:checked ~ .support em {
+ 	background: #6699FF;
+}
+
+.tip-block {
+ 	display: inline-block;
+ 	position: relative;
+ 	background: transparent;
+ 	margin: 0;
+ 	padding: 0;
+ 	border: 0;
+ 	height: 0;
+ 	width: 1px;
+}
+
+/*--------------Любой тег, атрибут data-title------------*/
+
+span.support::before,
+span.support-hover::before {
+	content: attr(data-title);
+}
+span.support-hover:hover::before,
+span.support:focus::before {
+	display: block;
+}
+/*--------------Внутри тега 'A'------------*/
+
+a.support:focus .tip {
+	 display:block;
+}
+a.support[tabindex="1"]:focus {
+	 outline: none;
+}
+/*---------------Непосредственно после тега 'A'----------------*/
+
+a.support-two:focus + .tip-block .tip-two {
+ 	display:block;
+}
+a.support-two[tabindex="1"]:focus {
+ 	outline: none;
+}
+
+/*----------Использование тега 'INPUT'--------------*/
+
+.tip-checkbox {
+  	display: none;
+}
+
+#tip-checkbox:checked ~ * .tip-three {
+    	display: block;
+}
+
+.tip-close {
+ 	display: inline-block;
+  	position: absolute;
+ 	background: #333;
+ 	border-radius: 20px;
+ 	border: 2px solid #FFF;
+ 	top: -8px;
+ 	right: -8px;
+ 	font: normal bold 14px Comic Sans MS;
+ 	text-align: center;
+ 	color: #fff;
+ 	cursor: pointer;
+ 	padding: 0 4px;
+}
+
+/*---------При наведении--------------*/
+
+.support-hover,
+.support-hover-two {
+ 	display: inline-block;
+ 	position: relative;
+ 	color: #06C;
+ 	text-decoration: none;
+ 	cursor: pointer;
+}
+.support-hover em,
+.support-hover-two em {
+ 	background: #FF6600;
+ 	border-radius: 20px;
+ 	border: 1px solid #999;
+ 	text-align: center;
+ 	color: #FFF;
+ 	font: normal bold 16px Arial;
+ 	padding: 0 4px;
+}
+span.support-hover:hover em,
+span.support:hover em,
+span.support:focus em,
+a.support-hover:hover em,
+a.support-hover-two:hover em {
+ 	background: #6699FF;
+}
+.dtp-calendar {
+    border: 3px solid #da1e3d;
+    border-radius: 5px;
+    padding: 5px;
+    margin-right: 5px;
+}
+.disappear{
+	display: none;
+}

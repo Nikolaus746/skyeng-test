@@ -1,0 +1,91 @@
+{% load static %}
+{% load compress %}
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <title>{% block head_title %}Тестовое задание для SkyEng{% endblock %}</title>
+    {% block extra_head %}
+    {% endblock %}
+
+  <meta name="description" content="
+            {% block description %}{% if self.translated_search_description %}{{ self.translated_search_description }}{% endif %}{% endblock %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="facebook-domain-verification" content="ejj0bp2e019p43nh2xw4bsbs7uo3pa"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+          integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+          href="{%  static "bower_components/jquery-datetime-picker-bygiro/dist/jquery.datetimepicker.ByGiro.css" %}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
+
+
+    {# Global stylesheets #}
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static 'scss/app.scss' %}">
+    {% endcompress %}
+  </head>
+  <body>
+    {% block body %}
+<div class="grid-container">
+    {% if messages %}
+    <div>
+    <div class="callout secondary">
+  <h5>Messages:</h5>
+      <ul>
+        {% for message in messages %}
+        <li>{{message}}</li>
+        {% endfor %}
+      </ul>
+</div>
+
+    </div>
+    {% endif %}
+
+    <div>
+
+    <div class="top-bar">
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu >
+      {% if user.is_authenticated %}
+        <li><a style="background: black" href="{% url 'account_logout' %}">Sign Out</a></li>
+        {% else %}
+        <li><a style="background: black" href="{% url 'account_login' %}">Sign In</a></li>
+        <li><a style="background: black" href="{% url 'account_signup' %}">Sign Up</a></li>
+        {% endif %}
+    </ul>
+  </div>
+
+</div>
+
+    </div>
+    {% block content %}
+    {% endblock %}
+
+</div>
+    {% endblock %}
+    {% block extra_body %}
+    {% endblock %}
+
+  {% compress js %}
+    {% block additional_js %}
+    <script src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
+    {% endblock %}
+    <script src="{% static 'bower_components/foundation-sites/dist/js/foundation.min.js' %}"></script>
+
+
+{% endcompress %}
+
+{% block extra_js %}
+<script>
+        $(document).foundation();
+
+    </script>
+{% endblock %}
+  </body>
+</html>

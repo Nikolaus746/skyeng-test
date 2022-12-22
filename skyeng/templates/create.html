@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="grid-container">
+  <div class="grid-x grid-margin-x">
+    <div class="cell">
+        <div class="top-bar">
+
+            <div class="top-bar-left">
+
+  </div>
+
+
+  <div class="top-bar-right">
+    <ul class="menu">
+      <li><a type="button" class="button" href="/accounts/logout/">Выход</a></li>
+    </ul>
+  </div>
+</div>
+    </div>
+  </div>
+
+<div class="grid-x grid-margin-x">
+    <div class="cell">
+        <h3>Создать заметку</h3>
+    </div>
+    <div class="cell">
+        <form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input class="button" type="submit" value="Save">
+</form>
+    </div>
+
+</div>
+
+</div>
+
+
+
+{% endblock %}
